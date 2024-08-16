@@ -31,10 +31,6 @@ public class DatabaseUtils {
 
     private final static String COLUMN_TEMPLATE = "\t`%s` %s";
 
-    public static void main(String[] args) {
-        mysqlXmlMapper2TableDdl("/Users/xiezhidong/IdeaProjects/TronMonitor/src/main/resources/sqlmap");
-    }
-
     public static void mysqlXmlMapper2TableDdl(String mapperDicPath) {
         List<File> files = FileUtils.dicFiles(mapperDicPath, (name) -> name != null && name.endsWith("Mapper.xml"));
         if (files == null || files.isEmpty()) {
@@ -104,7 +100,7 @@ public class DatabaseUtils {
             column.add(pk);
         }
         sb.append(String.join(",\n", column));
-        return String.format(TABLE_CREATE_DDL_TEMPLATE, DATABASE_NAME, tableInfo.getTableName(), sb.toString());
+        return String.format(TABLE_CREATE_DDL_TEMPLATE, DATABASE_NAME, tableInfo.getTableName(), sb);
     }
 
     public static String columInfo2ddl(ColumInfo columInfo) {
